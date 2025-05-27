@@ -78,7 +78,6 @@ local function sun(utc,lat,lon,zenith)
 		H_rise = (360 - acos(cosH_rise))/15
 		sunrise = H_rise + RA_rise - (0.06571 * t_rise) - 6.622	
 		sunrise_i = fit_into_range(sunrise - lng_hour, 0, 24) + UT
-		print(sunrise_i)
 		sunrise = date():sethours(0, 0, 0):addhours(sunrise_i):fmt('%Y-%m-%d %T')
 	end
 	if cosH_set < -1 then sunset = nil
@@ -86,7 +85,6 @@ local function sun(utc,lat,lon,zenith)
 		H_set = acos(cosH_set)/15
 		sunset = H_set + RA_set - (0.06571 * t_set) - 6.622	
 		sunset_i = fit_into_range(sunset - lng_hour, 0, 24) + UT
-		print(sunset_i)
 		sunset = date():sethours(0, 0, 0):addhours(sunset_i):fmt('%Y-%m-%d %T')
 	end
 	if sunset and sunrise then length = sunset_i - sunrise_i end
